@@ -1,37 +1,41 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        long long int max1=LONG_MIN;
-        long long int max2=LONG_MIN;
-        long long int max3=LONG_MIN;
-        bool fk=false;
-        int n=nums.size();
-        for(int i=0;i<n;i++)
-        {
-            if(nums[i]==INT_MIN)
-            {
-                fk=true;
-            }
-            if(nums[i]>max1)
-            {
-                max3=max2;
-                max2=max1;
-                max1=nums[i];
-            }
-            else if(nums[i]>max2 && nums[i]!=max1)
-            {
-                max3=max2;
-                max2=nums[i];
-            }
-            else if(nums[i]>max3 && nums[i]!=max1 && nums[i]!=max2)
-            {
-                max3=nums[i];
-            }
-        }
-       
-        return max3==LONG_MIN ? max1 : max3;
+        int _max = 0;
+        
+        unordered_set<int> seen{nums.begin(), nums.end()};
+        
+        if(seen.size() < 3) return *max_element(seen.begin(), seen.end());
+        
+        for(int i = 0; i < 3; ++i) {
+            auto mx = max_element(seen.begin(), seen.end());
+            _max = *mx; 
+            seen.erase(mx);
+        } 
+        
+        return _max;
     }
 };
 
 //rajesh-gole
 
+/*
+// Store all elements to set s
+    
+    unordered_set<int> s{nums.begin(), nums.end()};
+    
+    int res=0;
+    
+    unordered_set<int>::iterator it;
+    
+    // deleting maximum number upto 3rd max
+    for(int i=0;i<3;i++)
+    {
+       it = max_element(s.begin(),s.end());
+       res=*it;
+       s.erase(it);
+       
+    }
+
+    return res;
+*/
