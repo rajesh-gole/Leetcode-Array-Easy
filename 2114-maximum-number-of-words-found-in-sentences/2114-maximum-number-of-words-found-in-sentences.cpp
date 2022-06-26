@@ -3,19 +3,14 @@ public:
     int mostWordsFound(vector<string>& sentences) {
         
         
-        int count=0;
-        int temp=INT_MIN;
+        int res=0;
         for(int i=0;i<sentences.size();i++){
-        stringstream ss(sentences[i]);
-        string word;
-        while(ss>>word)
-            count++;   
-        if(count>temp)
-            temp=count;
-        else
-            temp=temp; 
-        count=0;
+        // count length each sentence
+        int len = std::count(sentences[i].begin(), sentences[i].end(), ' ')+1;
+        res = max(res,len);
         }
-        return temp;
+        return res;
     }
 };
+
+//rajesh-gole
