@@ -1,24 +1,15 @@
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        m--, n--;
-        if (n != -1) 
-            for (int i = n + m + 1; i > -1; i--) 
-            {
-                if (m == -1 || nums2[n] > nums1[m]) 
-                    {
-                    nums1[i] = nums2[n--];
-                        if (n == -1) 
-                            break;
-                    }
-                else 
-                    {
-                    nums1[i] = nums1[m--];
-                    }
+        int j=0;
+        for(int i=m;i<m+n;i++)
+        {
+            nums1[i]=nums2[j++];
         }
+        sort(nums1.begin(), nums1.end());
     }
 };
 
-// Using Two Pointer
+
 
 //rajesh-gole
