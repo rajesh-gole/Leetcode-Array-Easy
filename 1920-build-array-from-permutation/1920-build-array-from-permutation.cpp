@@ -19,7 +19,17 @@ nums[0]=0 nums[nums[0]]=0
 
 */
 
+/*
+// Another Solution
 
-
+    vector<int>  v;
+        
+        for(int i = 0; i < nums.size(); i++)
+        {
+            int ans = nums[nums[i]];
+            v.push_back(ans);
+        }
+        return v;
+*/
 
 //rajesh-gole
